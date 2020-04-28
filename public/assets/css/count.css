@@ -13,23 +13,23 @@ body{
 /* 数字 */
 h1{
     margin: auto;
-    
+
     /* 文字の太さ */
     font-weight: 100;
-    
+
     /* 文字を中央寄せ */
     text-align: center;
-    
+
     /* 横幅 */
     width: 100px;
-    
+
     /* 縦幅 */
     height: 100px;
     line-height: 100px;
-    
+
     /* 枠の太さ 線の種類 色 */
     border: 1px solid #009688;
-    
+
     /* 枠を丸くする */
     border-radius: 50%;
 }
@@ -40,23 +40,23 @@ input{
     background: none;
     display: block;
     margin: auto;
-    
+
     width: 80%;
     text-align: center;
-    
+
     /* 上との余白 */
     margin-top: 20px;
-    
+
     /* 文字の大きさ */
     font-size: 20px;
 }
 
 /* プラスボタン */
 input[value="+"]{
-    
+
     /* 文字の色 */
     color: #f9f9f9;
-    
+
     /* 背景 */
     background: #448AFF;
 }
@@ -65,4 +65,19 @@ input[value="+"]{
 input[value="-"]{
     color: #f9f9f9;
     background: #F44336;
+}
+
+input[value="×2"]{
+    color: #f9f9f9;
+    background: #2ecc71;
+}
+
+input[value="÷2"]{
+    color: #f9f9f9;
+    background: #9b59b6;
+}
+
+input[value="0に戻す"]{
+    color: #f9f9f9;
+    background: #34495e;
 }

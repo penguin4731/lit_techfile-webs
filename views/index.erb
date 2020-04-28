@@ -4,11 +4,24 @@
   <meta charset="UTF-8">
   <title>Document</title>
   <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/count.css">
 </head>
 <body>
 <h1><%= @number %></h1>
 <form action='/plus' method="post">
-<input type="submit" value="+">
+  <input type="submit" value="+">
+</form>
+<form action='/minus' method="post">
+  <input type="submit" value="-">
+</form>
+<form action='/multiplication' method="post">
+  <input type="submit" value="×2">
+</form>
+<form action='/division' method="post">
+  <input type="submit" value="÷2">
+</form>
+<form action='/zero' method="post">
+  <input type="submit" value="0に戻す">
 </form>
 </body>
 </html>

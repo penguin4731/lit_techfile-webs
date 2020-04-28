@@ -18,9 +18,37 @@ get '/count' do
   erb:index
 end
 
-poset '/plus' do
+post '/plus' do
   count = Count.first
   count.number = count.number + 1
+  count.save
+  redirect '/count'
+end
+
+post '/minus' do
+  count = Count.first
+  count.number = count.number - 1
+  count.save
+  redirect '/count'
+end
+
+post '/multiplication' do
+  count = Count.first
+  count.number = count.number * 2
+  count.save
+  redirect '/count'
+end
+
+post '/division' do
+  count = Count.first
+  count.number = count.number / 2
+  count.save
+  redirect '/count'
+end
+
+post '/zero' do
+  count = Count.first
+  count.number = 0
   count.save
   redirect '/count'
 end
