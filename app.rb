@@ -27,7 +27,7 @@ end
 
 post '/new' do
   img_url = ''
-  if params[:file] != "" || params[:file] != nil then
+  if params[:file]
     img = params[:file]
     tempfile = img[:tempfile]
     upload = Cloudinary::Uploader.upload(tempfile.path)
