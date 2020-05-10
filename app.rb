@@ -20,7 +20,7 @@ get '/category/:id' do
 end
 
 get '/edit/:id' do
-  @items = Item.find(params[:id])
+  @item = Item.find(params[:id])
   @categories = Category.all
   erb :edit
 end
