@@ -2,9 +2,38 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>アンケートフォーム</title>
+  <title>確認画面</title>
 </head>
 <body>
-
+  <h1>アンケートフォーム</h1>
+  <form action="/confirm" method="post">
+    <p>
+      <label for="name">お名前</label>
+      <input type="text" name="name">
+    </p>
+    <p>
+      <label for="email">メールアドレス</label>
+      <input type="text" name="email">
+    </p>
+    <p>
+      <label>性別</label>
+      <label><input type="radio" name="gender" id="man" value="男性" checked>男性</label>
+      <label><input type="radio" name="gender" id="woman" value="女性">女性</label>
+    </p>
+    <p>
+      <label>好きな色</label>
+      <label><input type="checkbox" name="color" value="青">青</label>
+      <label><input type="checkbox" name="color" value="赤">赤</label>
+      <label><input type="checkbox" name="color" value="黄">黄</label>
+    </p>
+    <p>
+      <label for="free_text">自由記入欄</label>
+      <textarea name="free_text" cols="40" rows="3"></textarea>
+    </p>
+    <p>
+      <a href="#">キャンセル</a>
+      <input type="submit" value="確認">
+    </p>
+  </form>
 </body>
 </html>
