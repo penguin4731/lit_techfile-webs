@@ -21,6 +21,7 @@
         <input type="text" name="price" id="price">
       </div>
       <div>
+        <label for="category">カテゴリー</label>
         <select name="category" id="category">
           <% @categories.each do |category| %>
             <option value="<%= category.id %>"><%= category.name %></option>
