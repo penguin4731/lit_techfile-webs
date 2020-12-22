@@ -33,3 +33,17 @@ post '/delete/:id' do
     Item.find(params[:id]).destroy
     redirect '/'
 end
+
+get '/edit/:id' do
+    @item = Item.find(params[:id])
+    erb :edit
+end
+
+post '/renew/:id' do
+    @item = Item.find(params[:id])
+    @item.update({
+        title: params[:title],
+        price: params[:price]
+    })
+    redirect '/'
+end
