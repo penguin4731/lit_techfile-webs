@@ -63,16 +63,19 @@
   <script>
     ctx = document.getElementById("graph");
     ctx.width = 500;
+    clr = ['lightsalmon', 'palegreen', 'lightskyblue', 'plum', 'silver', 'pink'];
     var price = [], colors = [], labels = [];
     <% @items.each_with_index do |item, idx| %>
       price.push(<%= item.price %>);
       labels.push('<%= item.title %>');
+      colors.push(clr[<%= idx % 6 %>]);
     <% end %>
     var data = {
       labels: labels,
       datasets:[
       {
         data: price,
+        backgroundColor: colors
       }]
     };
     var myDoughnut = new Chart(ctx,{
