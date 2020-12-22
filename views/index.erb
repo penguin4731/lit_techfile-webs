@@ -7,29 +7,33 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-  <div>
-    <% unless @items.empty? %>
-      <canvas id="graph"></canvas>
-    <% end %>
-    <h3>合計：<%= @total %>円</h3>
-    <form action="/create" method="post">
-      <div>
-        <label for="title">内容</label>
-        <input type="text" name="title" id="title">
-      </div>
-      <div>
-        <label for="price">金額</label>
-        <input type="text" name="price" id="price">
-      </div>
-      <div>
-        <select name="category" id="category">
-          <% @categories.each do |category| %>
-            <option value="<%= category.id %>"><%= category.name %></option>
-          <% end %>
-        </select>
-      </div>
-      <input type="submit" value="追加">   
-    </form>
+  <div class="container">
+    <div class="row justify-content-md-center"> //div
+      <div class="col-lg-6"> //div
+        <% unless @items.empty? %>
+          <canvas id="graph"></canvas>
+        <% end %>
+        <h3 class="text-center my-4">合計：<%= @total %>円</h3>
+        <div class="card"> //div
+          <div class="card-body"> //div
+            <form action="/create" method="post">
+              <div class="form-group">
+                <label for="title">内容</label>
+                <input type="text" name="title" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="price">金額</label>
+                <input type="text" name="price" class="form-control">
+              </div>
+              <div>
+                <select name="category" id="category">
+                  <% @categories.each do |category| %>
+                    <option value="<%= category.id %>"><%= category.name %></option>
+                  <% end %>
+                </select>
+              </div>
+              <input type="submit" value="追加">   
+            </form>
   </div>
   
   <div>
