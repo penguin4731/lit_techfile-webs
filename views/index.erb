@@ -14,8 +14,8 @@
           <canvas id="graph"></canvas>
         <% end %>
         <h3 class="text-center my-4">合計：<%= @total %>円</h3>
-        <div class="card"> //div
-          <div class="card-body"> //div
+        <div class="card">
+          <div class="card-body">
             <form action="/create" method="post">
               <div class="form-group">
                 <label for="title">内容</label>
@@ -44,28 +44,35 @@
           <% end %>
         </div>
   
-  <% if @category_name.present? %>
-    <h2><%= @category_name %></h2>
-  <% end %>
+        <% if @category_name.present? %>
+          <h2><%= @category_name %></h2>
+        <% end %>
   
-  <div>
-    <% @items.each do |item| %>
-      <p><%= item.category.try(:name) %></p>
-      <div>
-        <p><%= item.title %></p>
-        <p><%= item.price %>円</p>
+        <div>
+          <% @items.each do |item| %>
+            <div class="card col-lg-12 my-2">
+              <div class="card-body">
+                <p class="text-muted text-right category"><%= item.category.try(:name) %></p>
+                <div class="row mt-4 mb-1">
+                  <p class="col-lg-8"><%= item.title %></p>
+                  <p class="col-lg-4"><%= item.price %></p>
+                </div>
+                <div class="d-flex justify-content-end align-items-center mt-3">
+                  <span>
+                    <form action="/delete/<%= item.id %>" method="post">
+                      <input type="submit" value="DELETE" class="btn text-muted btn-small">
+                    </form>
+                  </span>
+                  <span>
+                    <a href="/edit/<%= item.id %>" class="btn text-muted btn-small">EDIT</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div>
-        <span>
-          <form action="/delete/<%= item.id %>" method="post">
-            <input type="submit" value="削除">
-          </form>
-        </span>
-        <span>
-          <a href="/edit/<%= item.id %>">EDIT</a>
-        </span>
-      </div>
-    <% end %>
+    </div>
   </div>
   <script>
     ctx = document.getElementById("graph");
