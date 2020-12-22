@@ -7,3 +7,12 @@ require './models/item.rb'
 get '/' do
     erb :index
 end
+
+post '/create' do
+    Item.create({
+        title: params[:title],
+        price: params[:price]
+ })
+
+ redirect '/'
+end
