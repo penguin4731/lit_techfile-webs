@@ -61,6 +61,25 @@
     <% end %>
   </div>
   <script>
+    ctx = document.getElementById("graph");
+    ctx.width = 500;
+    var price = [], colors = [], labels = [];
+    <% @items.each_with_index do |item, idx| %>
+      price.push(<%= item.price %>);
+      labels.push('<%= item.title %>');
+    <% end %>
+    var data = {
+      labels: labels,
+      datasets:[
+      {
+        data: price,
+      }]
+    };
+    var myDoughnut = new Chart(ctx,{
+      type: 'doughnut',
+      data: data,
+      options: { responsive: false }
+    });
   </script>
 </body>
 </html>
