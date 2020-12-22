@@ -8,8 +8,8 @@
 </head>
 <body>
   <div class="container">
-    <div class="row justify-content-md-center"> //div
-      <div class="col-lg-6"> //div
+    <div class="row justify-content-md-center">
+      <div class="col-lg-6">
         <% unless @items.empty? %>
           <canvas id="graph"></canvas>
         <% end %>
@@ -26,7 +26,7 @@
                 <input type="text" name="price" class="form-control">
               </div>
               <div class="form-group">
-                // カテゴリー
+                <label for="category">カテゴリー</label>
                 <select name="category" class="form-control">
                   <% @categories.each do |category| %>
                     <option value="<%= category.id %>"><%= category.name %></option>
@@ -47,7 +47,7 @@
         <% if @category_name.present? %>
           <h2><%= @category_name %></h2>
         <% end %>
-  
+
         <div>
           <% @items.each do |item| %>
             <div class="card col-lg-12 my-2">
