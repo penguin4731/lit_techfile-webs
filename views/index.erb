@@ -19,5 +19,14 @@
       <input type="submit" value="追加">   
     </form>
   </div>
+  
+  <div>
+    <% @items.each do |item| %>
+      <div>
+        <p><%= item.title %></p>
+        <p><%= item.price %>円</p>
+      </div>
+    <% end %>
+  </div>
 </body>
 </html>

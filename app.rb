@@ -5,6 +5,7 @@ require 'sinatra/reloader' if development?
 require './models/item.rb'
 
 get '/' do
+    @items = Item.all
     erb :index
 end
 
