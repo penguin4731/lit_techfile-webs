@@ -14,7 +14,8 @@ end
 post '/create' do
     Item.create({
         title: params[:title],
-        price: params[:price]
+        price: params[:price],
+        category_id: params[:category]
  })
 
  redirect '/'
