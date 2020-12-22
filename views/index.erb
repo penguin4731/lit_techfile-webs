@@ -7,6 +7,9 @@
 </head>
 <body>
   <div>
+    <% unless @items.empty? %>
+      <canvas id="graph"></canvas>
+    <% end %>
     <h3>合計：<%= @total %>円</h3>
     <form action="/create" method="post">
       <div>
@@ -57,5 +60,7 @@
       </div>
     <% end %>
   </div>
+  <script>
+  </script>
 </body>
 </html>
