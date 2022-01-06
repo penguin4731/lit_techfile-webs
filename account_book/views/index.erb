@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>account_book</title>
+  <script src="/assets/js/Chart.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-md-center">
+      <div class="col-lg-6">
+        <% unless @items.empty? %>
+          <canvas id="graph"></canvas>
+        <% end %>
+        <h3 class="text-center my-4">合計：<%= @total %>円</h3>
+        <div class="card">
+          <div class="card-body">
+            <form action="/create" method="post">
+              <div class="form-group">
+                <label for="title">内容</label>
+                <input type="text" name="title" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="price">金額</label>
+                <input type="text" name="price" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="category">カテゴリー</label>
+                <select name="category" class="form-control">
+                  <% @categories.each do |category| %>
+                    <option value="<%= category.id %>"><%= category.name %></option>
+                  <% end %>
+                </select>
+              </div>
+              <input type="submit" value="追加" class="btn btn-dark float-right mt-2">   
+            </form>
+          </div>
+        </div>
+  
+        <div class="btn-group mt-5 mb-3 col-lg-12">
+          <% @categories.each do |category| %>
+            <a href="/category/<%= category.id %>" class="btn btn-secondary"><%= category.name %></a>
+          <% end %>
+        </div>
+  
+        <% if @category_name.present? %>
+          <h2><%= @category_name %></h2>
+        <% end %>
+
+        <div>
+          <% @items.each do |item| %>
+            <div class="card col-lg-12 my-2">
+              <div class="card-body">
+                <p class="text-muted text-right category"><%= item.category.try(:name) %></p>
+                <div class="row mt-4 mb-1">
+                  <p class="col-lg-8"><%= item.title %></p>
+                  <p class="col-lg-4"><%= item.price %>円</p>
+                </div>
+                <div class="d-flex justify-content-end align-items-center mt-3">
+                  <span>
+                    <form action="/delete/<%= item.id %>" method="post">
+                      <input type="submit" value="DELETE" class="btn text-muted btn-small">
+                    </form>
+                  </span>
+                  <span>
+                    <a href="/edit/<%= item.id %>" class="btn text-muted btn-small">EDIT</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    ctx = document.getElementById("graph");
+    ctx.width = 500;
+    clr = ['lightsalmon', 'palegreen', 'lightskyblue', 'plum', 'silver', 'pink'];
+    var price = [], colors = [], labels = [];
+    <% @items.each_with_index do |item, idx| %>
+      price.push(<%= item.price %>);
+      labels.push('<%= item.title %>');
+      colors.push(clr[<%= idx % 6 %>]);
+    <% end %>
+    var data = {
+      labels: labels,
+      datasets:[
+      {
+        data: price,
+        backgroundColor: colors
+      }]
+    };
+    var myDoughnut = new Chart(ctx,{
+      type: 'doughnut',
+      data: data,
+      options: { responsive: false }
+    });
+  </script>
+</body>
+</html>
