@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="card col-lg-6 m-5">
+        <div class="card-body">
+          <form action="/new" method="post" enctype="multipart/form-data">
+            <p>名前：<input type="text" name="user_name" class="form-control"></p>
+            <p>本文：<input type="text" name="body" class="form-control"></p>
+            <p><input type="file" name="file" class="form-control-file"></p>
+            <input type="submit" value="POST" class="btn btn-dark float-right">
+          </form>
+        </div>
+      </div>
+
+      <% @contents.each do |content| %>
+      <div class="card col-lg-6 m-5">
+        <div class="card-body">
+          <p><%= content.name %></p>
+          <p><%= content.body %></p>
+          <% unless content.img.empty? %>
+            <p><img class="img-fluid rounded" src="<%= content.img %>"></p>
+          <% end %>
+          <div class="d-flex justify-content-end align-items-center mt-3">
+            <span class="card-footer-text"><%= content.good %></span>
+            <form action="/good/<%= content.id %>" method="post">
+              <input type="submit" value="LIKE" class="btn card-footer-text">
+            </form>
+            <form action="/delete/<%= content.id %>" method="post">
+              <input type="submit" value="DELETE" class="btn card-footer-text">
+            </form>
+            <a href="/edit/<%= content.id %>" class="btn card-footer-text">EDIT</a>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>
