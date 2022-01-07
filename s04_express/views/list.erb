@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>タイトル</title>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</head>
+<body>
+	<div>
+		<div>
+			<% @stations.each do |station| %>
+				<div class="station">
+					<span class="line"><%= station["line"] %></span>
+					<span class="name"><%= station["name"] %></span>
+				</div>
+			<% end %>
+			<div id="detail">
+				<div>
+					<h2>次の駅</h2>
+				</div>
+				<div class="next"></div>
+			</div>
+		</div>
+	</div>
+	<script>
+		window.onload = function() {
+			$(".station").click(function() {
+				var line = $(".line", this).text();
+				var name = $(".name", this).text();
+				$.ajax("/api/station", {
+					type: "GET",
+					data: { line: line, name: name },
+					datatype: "json",
+				})
+				.done(function (json) {
+					$("#detail .next").text(json["next"]);
+				});
+			});
+		};
+	</script>
+</body>
+</html>
