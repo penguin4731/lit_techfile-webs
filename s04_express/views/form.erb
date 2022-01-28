@@ -3,50 +3,65 @@
 <head>
 	<meta charset="UTF-8">
 	<title>フォーム</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+	<script src="https://kit.fontawesome.com/ea9b138b3f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<div>
-		<div>
-			<form action="/list" method="get">
-			  <input type="text" name="x" id="x" placeholder="x">
-			  <input type="text" name="y" id="y" placeholder="y">
-			  <button type="submit">検索</button>
+	<div class="container-fluid">
+		<div class="d-flex align-items-center justify-content-center search">
+			<form action="/list" method="get" class="d-flex">
+			  <input type="text" name="x" id="x" placeholder="x" class="form-control mx-2">
+			  <input type="text" name="y" id="y" placeholder="y" class="form-control mx-2">
+			  <button type="submit" value="検索">
+			  	<i class="fas fa-search"></i>
+			  </button>
 			</form>
 		</div>
 	</div>
-	<h2>検索履歴</h2>
-	<div>
+	<h2 class="text-center my-5">
+		<i class="fas fa-history"></i>検索履歴
+	</h2>
+	<div class="row d-flex justify-content-center">
 		<% @histories.each do |history| %>
-			<div>
-				<div>
+			<div class="card col-lg-2 m-1">
+				<div class="card-body">
 					<%= history.x %>, <%= history.y %>
-					<div>
+					<div class="d-flex justify-content-end text-muted">
 						<% if history.favorite %>
 							<form action="/<%= history.id %>/update" method="post">
-								<button type="submit">解除</button>
+								<button type="submit" value="解除">
+									<i class="fas fa-heart heart"></i>
+								</button>
 							</form>
 						<% else %>
 							<form action="/<%= history.id %>/update" method="post">
-								<button type="submit">お気に入り</button>
+								<button type="submit" value="お気に入り">
+									<i class="far fa-heart text-muted"></i>
+								</button>
 							</form>
 						<% end %>
 						<form action="/<%= history.id %>/delete" method="post">
-							<button type="submit">[x]</button>
+							<button type="submit" value="お気に入り">
+								<i class="far fa-trash-alt text-muted"></i>
+							</button>
 						</form>
 					</div>
 				</div>
 			</div>
 		<% end %>
 	</div>
-	<h2>お気に入り</h2>
-	<div>
+	<h2 class="text-center my-5">
+		<i class="fas fa-heart"></i>お気に入り
+	</h2>
+	<div class="row d-flex justify-content-center">
 		<% @favorites.each do | favorite | %>
-			<div>
-				<div>
+			<div class="card col-lg-2 m-1">
+				<div class="card-body">
 					<%= favorite.x %>, <%= favorite.y %>
 				</div>
 			</div>
 		<% end %>
 	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
