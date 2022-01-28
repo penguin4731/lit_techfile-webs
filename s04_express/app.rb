@@ -14,12 +14,14 @@ get '/' do
 end
 
 get '/list' do
+  @x = params[:x]
+  @y = params[:y]
   History.create!(x: params[:x], y: params[:y])
   uri = URI("http://express.heartrails.com/api/json")
   uri.query = URI.encode_www_form({
     method: "getStations",
-    x: params[:x],
-    y: params[:y]
+    x: @x,
+    y: @y
   })
   res = Net::HTTP.get_response(uri)
   json = JSON.parse(res.body)
