@@ -1,11 +1,14 @@
-ruby '2.6.2'
-source "https://rubygems.org"
+ruby '3.0.0'
+source 'https://rubygems.org'
 
-gem 'rubocop'
-gem 'ruby-debug-ide'
-gem 'debase'
-gem 'rcodetools'
-gem 'fastri'
+gem 'sinatra', '~> 2.1'
+gem 'sinatra-contrib', '~> 2.1'
+gem 'webrick', '~> 1.7'
 
-gem 'sinatra'
-gem 'sinatra-contrib'
+group :development do
+  gem 'debase'
+  gem 'fastri'
+  gem 'rcodetools'
+  gem 'rubocop'
+  gem 'ruby-debug-ide'
+end
